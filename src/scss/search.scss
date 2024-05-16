@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -16,23 +17,23 @@ body {
 }
 
 
-    .search-input {
-        padding: 10px;
-        width: 250px;
-        outline: none;
-        border-radius: 5px;
-        border: 1px solid #cccccc;
-    }
+.search-input {
+    padding: 10px;
+    width: 250px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+}
 
-    .search-button {
-        background-color: #4E75FF;
-        color: white;
-        padding: 10px 20px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        border-radius: 5px;
-        border: none;    
-    } 
+.search-button {
+    background-color: #4E75FF;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    border: none;    
+} 
     
 
 .search-button:hover {

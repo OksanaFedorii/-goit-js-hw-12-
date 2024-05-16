@@ -58,7 +58,7 @@ export function createGalleryItemMarkup(items) {
             </div>
         </a>   
     `).join('');
-}
+};
 
 function initializeLightbox() {
     const lightbox = new SimpleLightbox('.gallery a', {
