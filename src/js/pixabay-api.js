@@ -1,5 +1,5 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const API_KEY = '43843798-e4c61f3cfe0ada13281a73887';
 const BASE_URL = 'https://pixabay.com/api/'; 
@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 galleryEl.innerHTML = createGalleryItemMarkup(data.hits);
                 console.log(data.hits); 
+                initializeLightbox();
             })
             .catch(error => {
                 console.error('Fetch error:', error);
@@ -45,7 +46,7 @@ export const fetchPhotosByQuery = (q) => {
 
 export function createGalleryItemMarkup(items) {
     return items.map(item => `
-        <div class="gallery-item">
+        <a href="${item.largeImageURL}" class="gallery-item" data-lightbox="gallery">
             <img src="${item.webformatURL}" alt="${item.tags}" />
             <div class="card-body">
               <ul class="list-group list-group-flush">
@@ -55,6 +56,21 @@ export function createGalleryItemMarkup(items) {
                 <li class="list-group-item"><strong>Downloads</strong> ${item.downloads}</li>
               </ul>
             </div>
-        </div>   
+        </a>   
     `).join('');
+}
+
+function initializeLightbox() {
+    const lightbox = new SimpleLightbox('.gallery a', {
+        overlayOpacity: 1,
+        captionsData: 'alt',
+        captionsDelay: 250,
+        nav: true, 
+        close: true, 
+        showCounter: true, 
+        animationSpeed: 300, 
+        fadeSpeed: 300, 
+    });
+
+    lightbox.refresh(); 
 }

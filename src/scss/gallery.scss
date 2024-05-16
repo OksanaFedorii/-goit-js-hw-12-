@@ -31,12 +31,13 @@
 }
 
 .list-group-item {
-    border: none; 
+    border: none;
+    list-style: none;
 }
 
 .list-group-item strong {
     font-weight: bold; 
-    color: #333; 
+    color: #333;
 }
 
 .gallery {
@@ -45,6 +46,20 @@
     justify-content: center;
 }
 
+.sl-overlay {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgb(74, 74, 74);
+    display: none;
+    z-index: 1035;
+}
 
+a {
+    text-decoration: none; 
+    color: #333;
+}
 
 
