@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.js-search-form');
     const galleryEl = document.querySelector('.js-gallery');
     const loaderEl = document.querySelector('.js-loader');
-    const loadMoreBtn = document.querySelector('.js-load-more'); // Перевірте, чи цей елемент існує
+    const loadMoreBtn = document.querySelector('.js-load-more'); 
 
     if (!form || !galleryEl || !loaderEl || !loadMoreBtn) {
         console.error('One or more elements were not found in the DOM.');
