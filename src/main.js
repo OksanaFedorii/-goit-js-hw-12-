@@ -7,12 +7,14 @@ import { createGalleryItemMarkup } from './js/render-function.js';
 
 let currentPage = 1;
 let currentQuery = '';
+let totalHits = 0;
+let loadedHits = 0;
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('.js-search-form');
     const galleryEl = document.querySelector('.js-gallery');
     const loaderEl = document.querySelector('.js-loader');
-    const loadMoreBtn = document.querySelector('.js-load-more'); 
+    const loadMoreBtn = document.querySelector('.js-load-more');
 
     if (!form || !galleryEl || !loaderEl || !loadMoreBtn) {
         console.error('One or more elements were not found in the DOM.');
@@ -41,10 +43,14 @@ document.addEventListener('DOMContentLoaded', function () {
         loadMoreBtn.classList.add('is-hidden');
         currentPage = 1;
         currentQuery = searchQuery;
+        loadedHits = 0;
 
         try {
             const data = await fetchPhotosByQuery(currentQuery, currentPage);
-            if (data.totalHits === 0) {
+            totalHits = data.totalHits;
+            loadedHits += data.hits.length;
+
+            if (totalHits === 0) {
                 iziToast.show({
                     message: 'Sorry, there are no images for this query',
                     position: 'topRight',
@@ -54,7 +60,9 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
                 galleryEl.innerHTML = createGalleryItemMarkup(data.hits);
                 initializeLightbox();
-                loadMoreBtn.classList.remove('is-hidden');
+                if (loadedHits < totalHits) {
+                    loadMoreBtn.classList.remove('is-hidden');
+                }
             }
         } catch (error) {
             console.error('Fetch error:', error);
@@ -77,9 +85,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
         try {
             const data = await fetchPhotosByQuery(currentQuery, currentPage);
+            loadedHits += data.hits.length;
             galleryEl.insertAdjacentHTML('beforeend', createGalleryItemMarkup(data.hits));
             initializeLightbox();
-            loadMoreBtn.classList.remove('is-hidden');
+
+            if (loadedHits < totalHits) {
+                loadMoreBtn.classList.remove('is-hidden');
+            } else {
+                iziToast.show({
+                    message: "We're sorry, but you've reached the end of search results.",
+                    position: 'topRight',
+                    timeout: 2000,
+                    color: 'blue',
+                });
+            }
         } catch (error) {
             console.error('Fetch error:', error);
             iziToast.show({
