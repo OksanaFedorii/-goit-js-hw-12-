@@ -132,4 +132,5 @@ function initializeLightbox() {
     });
 
     lightbox.refresh();
-}
+} 
+
