@@ -49,14 +49,14 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px; /* Add some space between items */
-    max-width: 1500px; /* Width to fit 5 items */
-    margin: 0 auto; /* Center the gallery */
+    gap: 10px; 
+    max-width: 1500px; 
+    margin: 0 auto; 
 }
 
 .gallery-item {
-    flex: 1 0 18%; /* Ensure 5 items per row, adjust as needed for gaps */
-    max-width: 18%; /* Ensure items don't exceed the row width */
+    flex: 1 0 18%; 
+    max-width: 18%; 
     margin: 10px 0;  
     border: 1px solid #2a2929; 
     box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
