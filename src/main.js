@@ -89,6 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
             galleryEl.insertAdjacentHTML('beforeend', createGalleryItemMarkup(data.hits));
             initializeLightbox();
 
+            const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
+            window.scrollBy({
+                top: cardHeight * 2,
+                behavior: 'smooth',
+            });
+
             if (loadedHits < totalHits) {
                 loadMoreBtn.classList.remove('is-hidden');
             } else {
